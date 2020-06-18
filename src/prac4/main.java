@@ -18,7 +18,7 @@ public class main {
 		//Input Data Stream
 		/*System.out.print("Enter data stream: ");
 		String datastream = sc.nextLine();*/
-
+	
 		//Leemos el txt e imprimimos letra por letra
 		System.out.println("Leyendo txt...\n");
 		char[] palabra = leeArchivo("C:\\Users\\is_ga\\Documents\\redes\\hola.txt"); //Arreglo que contiene todas las palabras del archivo txt //Aqui deben de cambiar la ruta a donde esta su archivo txt
