@@ -21,7 +21,7 @@ public class main {
 
 		//Leemos el txt e imprimimos letra por letra
 		System.out.println("Leyendo txt...\n");
-		char[] palabra = leeArchivo("C:\\Users\\is_ga\\Documents\\redes\\hola.txt"); //Arreglo que contiene todas las palabras del archivo txt
+		char[] palabra = leeArchivo("C:\\Users\\is_ga\\Documents\\redes\\hola.txt"); //Arreglo que contiene todas las palabras del archivo txt //Aqui deben de cambiar la ruta a donde esta su archivo txt
 		char[] palabra_de2=new char[2]; //Areglo usado para tomar solo 2 letras de la palabra original del txt
 		int[] checksun1=new int[120];
 		int[] checksun2=new int[144];
