@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class main {
@@ -18,10 +20,10 @@ public class main {
 		//Input Data Stream
 		/*System.out.print("Enter data stream: ");
 		String datastream = sc.nextLine();*/
-	
+
 		//Leemos el txt e imprimimos letra por letra
 		System.out.println("Leyendo txt...\n");
-		char[] palabra = leeArchivo("C:\\Users\\is_ga\\Documents\\redes\\hola.txt"); //Arreglo que contiene todas las palabras del archivo txt //Aqui deben de cambiar la ruta a donde esta su archivo txt
+		char[] palabra = leeArchivo("/home/isra/git/crc-practica4/src/ArchivoTxt/hola.txt"); //Arreglo que contiene todas las palabras del archivo txt //Aqui deben de cambiar la ruta a donde esta su archivo txt
 		char[] palabra_de2=new char[2]; //Areglo usado para tomar solo 2 letras de la palabra original del txt
 		int[] checksun1=new int[120];
 		int[] checksun2=new int[144];
@@ -127,7 +129,12 @@ public class main {
 				for(int i=0;i<data.length;i++) 
 					System.out.print(data[i]);
 				System.out.println();
-
+				//Terminamos de mostrar crc
+				
+				//Convertimos T(x) en checksun
+				System.out.println("Convirtiendo t(x) a decimal: "+binarioADecimal(data));
+				
+				
 				//System.out.println("Termine una vuelta de while");
 				//indice_arreglo++;
 
@@ -143,8 +150,8 @@ public class main {
 					System.arraycopy(data, 0, checksun1, a=a+24, 24);
 					contador_while++;
 				}
+				//Termina la construccion del arreglo checksun
 
-			
 
 
 				System.out.println();
@@ -156,23 +163,25 @@ public class main {
 
 
 			}
-		
+
 			//Imprimimos el arreglo checksun
 			System.out.println("Imprimiendo el arreglo checksun");
 			for(int i=0;i<checksun1.length;i++) {
 				System.out.print(checksun1[i]);
 			}
 			System.out.println();
-			System.out.print("Tamano del checksun= "+checksun2.length);
+			System.out.print("Tamano del checksun= "+checksun1.length);
+			System.out.println();
+			System.out.println("El valor en decimal del checksun= "+binarioADecimal(checksun1));
 			//Terminamos de imprimir
-		
-		
+
+
 		}
 		else {
 
 
 			char []palabra2= new char[12];
-			palabra2[11]='ÿ';
+			palabra2[11]='ï¿½';
 			for(int i=0;i<palabra2.length-1;i++) {
 				palabra2[i]=palabra[i];
 			}
@@ -264,12 +273,13 @@ public class main {
 					System.out.print(data[i]);
 				System.out.println();
 				//Termino imprimir CRC
-
+				System.out.println("Convirtiendo t(x) a decimal: "+binarioADecimal(data));
+				
 				//System.out.println("Termine una vuelta de while");
 				//indice_arreglo++;
 
 
-
+				//Comienza la construccion del arreglo checksun
 				if(contador_while==0) {
 					for(int i=0;i<checksun2.length;i++) {
 						checksun2[i]=0;
@@ -281,7 +291,7 @@ public class main {
 					System.arraycopy(data, 0, checksun2, a=a+24, 24);
 					contador_while++;
 				}
-
+				//Termina la construccion del arreglo checksun
 				System.out.println();
 				System.out.println("--------------------------------------------------------------------------------------------------------------");
 				System.out.println();
@@ -297,7 +307,8 @@ public class main {
 			}
 			System.out.println();
 			System.out.print("Tamano del checksun= "+checksun2.length);
-
+			System.out.println();
+			System.out.println("El valor en decimal del checksun= "+binarioADecimal(checksun2));
 		}
 
 
@@ -351,10 +362,22 @@ public class main {
 	}
 
 
-
-
-
-
+	static int binarioADecimal(int[] binario) {
+        
+        int v = 0;
+        int cont = 0;
+     
+        for (int i = binario.length - 1; i >= 0; i--) {
+            if (binario[i] == 1) {
+                v += (int) Math.pow((double) 2, (double) cont);
+            }
+            cont++;
+        }
+        return v;
+    }
+	
+	
+	
 
 }
 
